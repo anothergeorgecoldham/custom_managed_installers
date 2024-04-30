@@ -1,0 +1,46 @@
+<AppLockerPolicy Version="1">
+  <RuleCollection Type="Dll" EnforcementMode="AuditOnly" >
+    <FilePathRule Id="86f235ad-3f7b-4121-bc95-ea8bde3a5db5" Name="Benign DENY Rule" Description="" UserOrGroupSid="S-1-1-0" Action="Deny">
+      <Conditions>
+        <FilePathCondition Path="%OSDRIVE%\ThisWillBeBlocked.dll" />
+      </Conditions>
+    </FilePathRule>
+    <RuleCollectionExtensions>
+      <ThresholdExtensions>
+        <Services EnforcementMode="Enabled" />
+      </ThresholdExtensions>
+      <RedstoneExtensions>
+        <SystemApps Allow="Enabled"/>
+      </RedstoneExtensions>
+    </RuleCollectionExtensions>
+  </RuleCollection>
+  <RuleCollection Type="Exe" EnforcementMode="AuditOnly">
+    <FilePathRule Id="9420c496-046d-45ab-bd0e-455b2649e41e" Name="Benign DENY Rule" Description="" UserOrGroupSid="S-1-1-0" Action="Deny">
+      <Conditions>
+        <FilePathCondition Path="%OSDRIVE%\ThisWillBeBlocked.exe" />
+      </Conditions>
+    </FilePathRule>
+    <RuleCollectionExtensions>
+      <ThresholdExtensions>
+        <Services EnforcementMode="Enabled" />
+      </ThresholdExtensions>
+      <RedstoneExtensions>
+        <SystemApps Allow="Enabled"/>
+      </RedstoneExtensions>
+    </RuleCollectionExtensions>
+  </RuleCollection>
+    <RuleCollection Type="ManagedInstaller" EnforcementMode="AuditOnly">
+        <FilePublisherRule Id="28a59584-b390-49ae-964d-0cba12f318f8" Name="CHOCO.EXE version 0.12.1.0 exactly in CHOCOLATEY - CHOCOLATEY SHIM from O=CHOCOLATEY SOFTWARE, INC., L=TOPEKA, S=KANSAS, C=US" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+            <Conditions>
+            <FilePublisherCondition PublisherName="O=CHOCOLATEY SOFTWARE, INC., L=TOPEKA, S=KANSAS, C=US" ProductName="CHOCOLATEY - CHOCOLATEY SHIM" BinaryName="CHOCO.EXE">
+            <BinaryVersionRange LowSection="0.12.1.0" HighSection="0.12.1.0" />
+            </FilePublisherCondition>
+            </Conditions>
+        </FilePublisherRule>
+        <FilePathRule Id="5f7b4f60-0de4-411f-a2cc-99288b6c5353" Name="C:\Install Folder" Description="" UserOrGroupSid="S-1-1-0" Action="Allow">
+            <Conditions>
+              <FilePathCondition Path="C:\Install Folder" />
+            </Conditions>
+        </FilePathRule>
+    </RuleCollection>  
+</AppLockerPolicy>
