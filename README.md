@@ -27,5 +27,27 @@ From the output, find the first row of data labeled “0000:”, which is then f
 
 Note: Some capabilities of Windows Defender Application Control are only available on specific Windows versions.
 
-**This was written with Bing Chat**
+## Applying Applocker Policy using XML
+You will need to apply the Applocker XML file to the systems you wish the managed installer to work on.  You can use your desktop management solution such as Intune and push the policy, use group policy in Window AD, or PowerShell.  The instructions below are for powershell so you can test it beforehand.
+
+**Merging an Existing Policy:** To merge an existing AppLocker policy with a new one, you can use the Set-AppLockerPolicy cmdlet. This command sets the specified Group Policy Object (GPO) to contain the specified AppLocker policy. If no Lightweight Directory Access Protocol (LDAP) is specified, the local GPO is the default. Here’s an example:
+
+```
+Get-AppLockerPolicy -Local | Set-AppLockerPolicy -XMLPolicy C:\Path\To\Your\ExistingPolicy.xml -Merge
+```
+Replace C:\Path\To\Your\ExistingPolicy.xml with the actual path to your existing policy XML file.
+This command will merge the rules from the existing policy into the local AppLocker rule set.
+
+
+**Replacing the Entire Policy:** If you want to replace the entire AppLocker policy, you can create a new policy and set it using the same Set-AppLockerPolicy cmdlet. Here’s an example:
+```
+Set-AppLockerPolicy -XMLPolicy C:\Path\To\Your\NewPolicy.xml 
+```
+Replace C:\Path\To\Your\NewPolicy.xml with the path to your new policy XML file.
+This command will replace the existing policy with the rules defined in the new policy.
+
+### Test Test Test!
+Remember to test your policies thoroughly before applying them to ensure they meet your security requirements. If you need to retrieve an existing AppLocker policy or generate rules based on file information, you can also use the Get-AppLockerPolicy and New-AppLockerPolicy cmdlets. Happy scripting! 🚀
+
+**This was co-written with Bing Chat**
 
